@@ -2,15 +2,22 @@
 
     "use strict"
 
-    var Search = Backbone.Model.extend()
+    var query
+
+    var Search = Backbone.Model.extend({
+
+        initialize: function() {
+            // console.log( this )
+        }
+
+    })
 
     var SearchCollection = Backbone.Collection.extend({
 
         model: Search,
 
-        initialize: function( options ) {
-            this.query = options.query
-            var resultsView = new ResultsView()
+        initialize: function( query ) {
+            this.query = query.query
         },
 
         url: function() {
@@ -24,16 +31,20 @@
 
         tagName: 'ul',
 
-        collection: SearchCollection,
-
         el: $( '#results-container' ),
 
-        initialize: function() {
-            this.render()
+        initialize: function( query ) {
+            this.collection = new SearchCollection( query )
+            this.collection.bind( 'reset', this.render, this )
+            this.collection.fetch({ reset: true })
         },
 
         render: function() {
-            this.$el.empty()
+            var template = ''
+            _(this.collection.models).each( function( model ) {
+                template += _.template( $( '#result-template' ).html(), model.attributes )
+            }, this )
+            this.$el.html( template )
         }
 
     })
@@ -59,9 +70,12 @@
         search: function( e ) {
             e.preventDefault()
 
-            var term = encodeURI( $( '#search' ).val() ),
-                searchCollection = new SearchCollection({ query: term }),
-                result = searchCollection.fetch()
+            var
+                query       = encodeURI( $( '#search' ).val() ),
+                resultsView = new ResultsView({ query: query })
+                // searchCollection = new SearchCollection({ query: query }),
+                // resultsView      = new ResultsView({ collection: searchCollection })
+
 
         }
 
