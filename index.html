@@ -2,34 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/main.css">
     <title>Mat!</title>
 </head>
 <body>
 
-    <h1>Mat!</h1>
-
-    <script type="text/template" id="search-template">
-
-        <input id="search" type="search" placeholder="eg: äpple">
-        <button id="search-button">Sök</button>
-
-    </script>
-
-    <div id="search-container"></div>
+    <div id="container">
 
 
+        <script type="text/template" id="search-template">
 
-    <script type="text/template" id="result-template">
+            <input id="search" type="search" placeholder="eg: äpple" value="morot">
+            <button id="search-button">Sök</button>
 
-        <a href="#" id="<%= number %>"><%= name %></a>
-
-    </script>
-
-    <div id="result-container"></div>
-
-    <div id="results-container"></div>
+        </script>
+        <div id="search-container"></div>
 
 
+
+        <script type="text/template" id="result-template">
+
+            <li><a href="#" id="{{ number }}">{{ name }}</a></li>
+
+        </script>
+        <div id="results-container"></div>
+
+
+
+        <script type="text/template" id="foodstuff-template">
+
+            <header><h1>{{ name }}</h1></header>
+
+            <dl>
+                <dt>Carbohydrates:</dt>
+                    <dd>{{ nutrientValues.carbohydrates }}</dd>
+
+                <dt>Protein:</dt>
+                    <dd>{{ nutrientValues.protein }}</dd>
+
+                <dt>Energy Kcal:</dt>
+                    <dd>{{ nutrientValues.energyKcal }}</dd>
+
+                <dt>Fat:</dt>
+                    <dd>{{ nutrientValues.fat }}</dd>
+
+                <dt>cholesterol:</dt>
+                    <dd>{{ nutrientValues.cholesterol }}</dd>
+
+            </dl>
+
+        </script>
+        <div id="foodstuff-container"></div>
+
+
+
+    </div>
 
     <script src="js/zepto.min.js"></script>
     <script src="js/underscore.min.js"></script>

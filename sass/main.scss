@@ -1,0 +1,50 @@
+@import 'compass';
+@import 'compass/reset';
+
+body {
+    background: #fafafa;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+a {
+    color: #d04526;
+    text-decoration: none;
+}
+
+#container {
+    background: #fff;
+    width: 100%;
+    padding: 20px;
+    max-width: 500px;
+    margin: 30px auto;
+    @include box-shadow( 0 0 3px rgba( #000, 0.2 ) )
+}
+
+input {
+    padding: 5px;
+    font-size: 16px;
+}
+
+ul {
+    margin: 20px 0;
+}
+
+h1 {
+    font-size: 24px;
+    margin: 12px 0;
+}
+
+dl {
+    line-height: 1.4;
+    dd, dt {
+        float: left;
+    }
+    dt {
+        font-weight: bold;
+        clear: both;
+        padding-right: 5px;
+    }
+    @include clearfix;
+}
+
