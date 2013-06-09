@@ -18,12 +18,41 @@ a {
     padding: 20px;
     max-width: 500px;
     margin: 30px auto;
-    @include box-shadow( 0 0 3px rgba( #000, 0.2 ) )
+    position: relative;
+    @include box-shadow( 0 0 3px rgba( #000, 0.2 ) );
+    &.loading {
+        &:after {
+            content: ' ';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 100%;
+            background: rgba( #fff, 0.75 ) url( ../img/loading.gif ) no-repeat center center;
+            display: block;
+        }
+    }
 }
 
-input {
-    padding: 5px;
-    font-size: 16px;
+input[type=search] {
+    padding: 10px;
+    width: 300px;
+    font-size: 24px;
+    height: 30px;
+}
+
+input[type=submit] {
+    padding: 5px 10px;
+    border: none;
+    background: #206EB9;
+    color: #fff;
+    text-shadow: 0 0 1px rgba( #000, 0.3 );
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+    @include border-radius( 1px );
+    @include box-shadow( 0 0 1px rgba( #000, 1 ) );
 }
 
 ul {
